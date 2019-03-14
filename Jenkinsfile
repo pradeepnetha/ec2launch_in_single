@@ -25,15 +25,13 @@ pipeline {
            accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
            credentialsId: 'aws key', 
            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])  {    
-           
-   //        #git url: 'https://github.com/pradeepnetha/ec2launch.git'
-     //      #echo "enter ami id"
-sh '''
-               
-echo "
+            
+           sh '''
+           echo "
+           #echo "enter ami id"
 #read img_id
 #echo "enter instance type"
-#read instance_type 
+#read instance_type
 #echo "select key-pair"
 #read key_name
 #echo "enter sg name"
@@ -72,13 +70,10 @@ tag_instance=$9
 
 #instancelaunch() {
 aws ec2 run-instances --image-id $img_id --count 1 --instance-type $instance_type --key-name $key_name --security-group-ids $sg_name --subnet-id $sub_id --region us-east-2 > information.txt
-grep InstanceId information.txt | tr -d '", ":' > Instance_Id
-#grep 'InstanceId' information.txt > Instance_Id
+grep 'Key\|InstanceId' information.txt | tr -d '", ":' > Instance_Id
 sed -i 's/InstanceId//g' Instance_Id
-#sed -i 's/"//g' Instance_Id 
-#sed -i 's/KeyName//g' Instance_Id
+sed -i 's/KeyName//g' Instance_Id
 Insta_Id=$( head -1 Instance_Id )
-              
 echo $Insta_Id
 #aws ec2 create-tags --resources $Insta_Id --region $region_name  --tags Key=Name,Value=Web3
 echo $tag_name
@@ -87,18 +82,21 @@ echo $tag_instance
 aws ec2 create-tags --resources $Insta_Id --region $region_name --tags Key=$tag_name,Value=$tag_value Key=Name,Value=$tag_instance
 #}
 
-#instancelaunch 
- " > pradeepec2launch.sh
-         
+#instancelaunch
+
            
+           " > pradeepec2launch.sh
            
                 chmod +x pradeepec2launch.sh
                 ./pradeepec2launch.sh $img_id $instance_type $sub_id $region_name $sg_name $key_name $tag_name $tag_value $tag_instance
-
-    '''       
-                           
+          '''
+          //sh 'aws ec2 describe-instances --filters "Name=tag:Name,Values=Web3" --region us-east-2 > instance'        
+          //sh ' grep InstanceId instance > instance1 '
+          //sh([script: 'grep InstanceId instance > instance1'])
+          //sh([script: 'var=$( cat instance1 )'])
+          
          // slackSend baseUrl: 'https://opstree.slack.com/services/hooks/jenkins-ci/', channel: 'testjenkins', color: '#439FE0', message: 'build info', teamDomain: 'opstree', tokenCredentialId: 'slack-jenkins'     
-          //slackSend message: 'build is success', tokenCredentialId: 'slack-jenkins'
+          slackSend message: 'build is success', tokenCredentialId: 'slack-jenkins'
                          
             }
 
