@@ -25,12 +25,12 @@ pipeline {
            accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
            credentialsId: 'aws key', 
            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])  {    
-           sh '''
-           #git url: 'https://github.com/pradeepnetha/ec2launch.git'
-           #echo "enter ami id"
-echo '
+           
+   //        #git url: 'https://github.com/pradeepnetha/ec2launch.git'
+     //      #echo "enter ami id"
+sh '''
 
-#read img_id
+echo '#read img_id
 #echo "enter instance type"
 #read instance_type
 #echo "select key-pair"
@@ -83,7 +83,7 @@ echo $tag_instance
 aws ec2 create-tags --resources $Insta_Id --region $region_name --tags Key=$tag_name,Value=$tag_value Key=Name,Value=$tag_instance
 #}
 
-#instancelaunch ' > pradeepec2launch.sh
+#instancelaunch' > pradeepec2launch.sh
            
            
            
