@@ -73,7 +73,7 @@ tag_instance=$9
 aws ec2 run-instances --image-id $img_id --count 1 --instance-type $instance_type --key-name $key_name --security-group-ids $sg_name --subnet-id $sub_id --region us-east-2 > information.txt
 grep 'InstanceId' information.txt | tr -d '",:' > Instance_Id
 sed -i 's/InstanceId//g' Instance_Id
-sed -i 's/'"'//g' Instance_Id 
+sed -i 's/`"`//g' Instance_Id 
 sed -i 's/KeyName//g' Instance_Id
 Insta_Id=$( head -1 Instance_Id )
 echo $Insta_Id
