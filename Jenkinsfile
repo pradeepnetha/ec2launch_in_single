@@ -29,10 +29,10 @@ pipeline {
    //        #git url: 'https://github.com/pradeepnetha/ec2launch.git'
      //      #echo "enter ami id"
 sh '''
-
-echo '#read img_id
+echo ' 
+#read img_id
 #echo "enter instance type"
-#read instance_type
+#read instance_type 
 #echo "select key-pair"
 #read key_name
 #echo "enter sg name"
@@ -40,8 +40,8 @@ echo '#read img_id
 #echo "enter subnet id"
 #read sub_id
 #echo "enter region"
-#read region_name
-
+#read region_name' > pradeepec2launch.sh
+'''
 #img_id=ami-0b500ef59d8335eee
 #instance_type=t2.micro
 #key_name=asg-new
@@ -83,14 +83,14 @@ echo $tag_instance
 aws ec2 create-tags --resources $Insta_Id --region $region_name --tags Key=$tag_name,Value=$tag_value Key=Name,Value=$tag_instance
 #}
 
-#instancelaunch' > pradeepec2launch.sh
+#instancelaunch 
            
            
            
                 chmod +x pradeepec2launch.sh
                 ./pradeepec2launch.sh $img_id $instance_type $sub_id $region_name $sg_name $key_name $tag_name $tag_value $tag_instance
 
-          '''
+          
                            
          // slackSend baseUrl: 'https://opstree.slack.com/services/hooks/jenkins-ci/', channel: 'testjenkins', color: '#439FE0', message: 'build info', teamDomain: 'opstree', tokenCredentialId: 'slack-jenkins'     
           //slackSend message: 'build is success', tokenCredentialId: 'slack-jenkins'
