@@ -63,7 +63,7 @@ tag_instance=$9
 
 #aws ec2 run-instances --image-id $img_id --count 1 --instance-type $instance_type --key-name $key_name --security-group-ids $sg_name --subnet-id $sub_id --region $region_name > information.txt
 #grep InstanceId information.txt | tr -d '", ":' > InstanceId
-#sed -i 's/InstanceId//g' InstanceId
+sed -i 's/"InstanceId"//g' InstanceId
 #InstanceId=$( cat InstanceId )
 #echo $InstanceId
 #aws ec2 create-tags --resources $InstanceId --tags Key=Name,Value=Web3
