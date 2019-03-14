@@ -75,7 +75,6 @@ sed -i 's/"InstanceId"//g' Instance_Id
 #sed -i 's/InstanceId//g' Instance_Id
 #sed -i 's/KeyName//g' Instance_Id
 Insta_Id=$( head -1 Instance_Id )
-echo trim($Insta_Id, '"') > hai
 echo $Insta_Id
 #aws ec2 create-tags --resources $Insta_Id --region $region_name  --tags Key=Name,Value=Web3
 echo $tag_name
