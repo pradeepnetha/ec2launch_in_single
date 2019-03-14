@@ -74,7 +74,7 @@ grep 'InstanceId' information.txt | tr -d '", ":' > Instance_Id
 sed -i 's/"InstanceId"//g' Instance_Id
 #sed -i 's/InstanceId//g' Instance_Id
 #sed -i 's/KeyName//g' Instance_Id
-awk -F',' '{gsub(/"/, "",$1); print  $1}' Instance_Id > insta 
+#awk -F',' '{gsub(/"/, "",$1); print  $1}' Instance_Id > insta 
 Insta_Id=$( head -1 Instance_Id )
 echo $Insta_Id
 #aws ec2 create-tags --resources $Insta_Id --region $region_name  --tags Key=Name,Value=Web3
