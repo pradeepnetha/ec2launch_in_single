@@ -40,7 +40,8 @@ echo '
 #echo "enter subnet id"
 #read sub_id
 #echo "enter region"
-#read region_name' > pradeepec2launch.sh
+#read region_name
+' > pradeepec2launch.sh
 '''
 #img_id=ami-0b500ef59d8335eee
 #instance_type=t2.micro
