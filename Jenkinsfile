@@ -28,6 +28,8 @@ pipeline {
            sh '''
            #git url: 'https://github.com/pradeepnetha/ec2launch.git'
            #echo "enter ami id"
+echo '
+
 #read img_id
 #echo "enter instance type"
 #read instance_type
@@ -47,15 +49,15 @@ pipeline {
 #sub_id=subnet-0e7e366cb34aca9b2
 #region_name=us-east-2
 
-$img_id=$1
-$instance_type=$2
-$sub_id=$3
-$region_name=$4
-$sg_name=$5
-$key_name=$6
-$tag_name=$7
-$tag_value=$8
-$tag_instance=$9
+img_id=$1
+instance_type=$2
+sub_id=$3
+region_name=$4
+sg_name=$5
+key_name=$6
+tag_name=$7
+tag_value=$8
+tag_instance=$9
 
 
 #aws ec2 run-instances --image-id ami-abc12345 --count 1 --instance-type t2.micro --key-name MyKeyPair --subnet-id subnet-6e7f829e --tag-specifications 'ResourceType=instance,Tags=[{Key=webserver,Value=production}]' 'ResourceType=volume,Tags=[{Key=cost-center,Value=cc123}]' 
@@ -81,14 +83,15 @@ echo $tag_instance
 aws ec2 create-tags --resources $Insta_Id --region $region_name --tags Key=$tag_name,Value=$tag_value Key=Name,Value=$tag_instance
 #}
 
-#instancelaunch
+#instancelaunch ' > pradeepec2launch.sh
            
            
            
                 chmod +x pradeepec2launch.sh
                 ./pradeepec2launch.sh $img_id $instance_type $sub_id $region_name $sg_name $key_name $tag_name $tag_value $tag_instance
+
           '''
-                 
+                           
          // slackSend baseUrl: 'https://opstree.slack.com/services/hooks/jenkins-ci/', channel: 'testjenkins', color: '#439FE0', message: 'build info', teamDomain: 'opstree', tokenCredentialId: 'slack-jenkins'     
           //slackSend message: 'build is success', tokenCredentialId: 'slack-jenkins'
                          
