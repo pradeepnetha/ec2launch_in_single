@@ -41,8 +41,7 @@ echo '
 #read sub_id
 #echo "enter region"
 #read region_name
-' > pradeepec2launch.sh
-'''
+
 #img_id=ami-0b500ef59d8335eee
 #instance_type=t2.micro
 #key_name=asg-new
@@ -85,13 +84,14 @@ aws ec2 create-tags --resources $Insta_Id --region $region_name --tags Key=$tag_
 #}
 
 #instancelaunch 
-           
+ ' > pradeepec2launch.sh
+         
            
            
                 chmod +x pradeepec2launch.sh
                 ./pradeepec2launch.sh $img_id $instance_type $sub_id $region_name $sg_name $key_name $tag_name $tag_value $tag_instance
 
-          
+    '''       
                            
          // slackSend baseUrl: 'https://opstree.slack.com/services/hooks/jenkins-ci/', channel: 'testjenkins', color: '#439FE0', message: 'build info', teamDomain: 'opstree', tokenCredentialId: 'slack-jenkins'     
           //slackSend message: 'build is success', tokenCredentialId: 'slack-jenkins'
