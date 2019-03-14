@@ -29,7 +29,7 @@ pipeline {
    //        #git url: 'https://github.com/pradeepnetha/ec2launch.git'
      //      #echo "enter ami id"
 sh '''
-echo ' 
+echo "
 #read img_id
 #echo "enter instance type"
 #read instance_type 
@@ -84,7 +84,7 @@ aws ec2 create-tags --resources $Insta_Id --region $region_name --tags Key=$tag_
 #}
 
 #instancelaunch 
- ' > pradeepec2launch.sh
+ " > pradeepec2launch.sh
          
            
            
