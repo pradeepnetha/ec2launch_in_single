@@ -44,7 +44,7 @@ sed -i \'s/InstanceId://g\' hai
 sed -i \'s/KeyName://g\' keyname
 Insta_Id=$(cat hai)
      
-aws ec2 create-tags --resources $Insta_Id --region $region_name --tags Key=$tag_name,Value=$tag_value Key=Name,Value=$tag_instance``` > proper.sh''')
+aws ec2 create-tags --resources $Insta_Id --region $region_name --tags Key=$tag_name,Value=$tag_value Key=Name,Value=$tag_instance``` > proper.sh chmod +x proper.sh ./proper.sh''')
                 }
             }
         }
