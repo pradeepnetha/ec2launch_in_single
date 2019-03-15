@@ -54,6 +54,7 @@ aws ec2 run-instances --image-id $img_id --count 1 --instance-type $instance_typ
                
   sh '''
   grep InstanceId information.txt > hai
+  sed -i 's/"//g' hai
   '''
   
                
