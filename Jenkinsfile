@@ -43,7 +43,7 @@ tag_instance=$9
 #aws ec2 run-instances --image-id ami-abc12345 --count 1 --instance-type t2.micro --key-name MyKeyPair --subnet-id subnet-6e7f829e --tag-specifications 'ResourceType=instance,Tags=[{Key=webserver,Value=production}]' 'ResourceType=volume,Tags=[{Key=cost-center,Value=cc123}]' 
 
 #aws ec2 run-instances --image-id $img_id --count 1 --instance-type $instance_type --key-name $key_name --security-group-ids $sg_name --subnet-id $sub_id --region $region_name > information.txt
-#grep InstanceId information.txt | tr -d '", ":' > InstanceId
+//#grep InstanceId information.txt | tr -d '", ":' > InstanceId
 #sed -i 's/"InstanceId"//g' InstanceId
 #InstanceId=$( cat InstanceId )
 #echo $InstanceId
