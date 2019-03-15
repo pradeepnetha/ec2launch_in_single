@@ -45,28 +45,19 @@ aws ec2 run-instances --image-id $img_id --count 1 --instance-type $instance_typ
 instancelaunch " > pradeepec2launch.sh
                 chmod +x pradeepec2launch.sh
                 ./pradeepec2launch.sh $img_id $instance_type $sub_id $region_name $sg_name $key_name $tag_name $tag_value $tag_instance
-              
-                grep 'InstanceId' information.txt | tr -d '\", \"' > hai
-                grep 'KeyName' information.txt | tr -d '\", \"' > keyname
+              '''
+              sh '''
+              echo '
+                grep 'InstanceId' information.txt | tr -d '", "' > hai
+                grep 'KeyName' information.txt | tr -d '", "' > keyname
                 sed -i 's/InstanceId://g' hai
                 sed -i 's/KeyName://g' keyname
                 Insta_Id=$(cat hai)
                 
                 aws ec2 create-tags --resources $Insta_Id --region $region_name --tags Key=$tag_name,Value=$tag_value Key=Name,Value=$tag_instance
-                
+                ' > proper.sh
           '''
-
-               
-               
-         //sh 'aws ec2 describe-instances --filters "Name=tag:Name,Values=Web3" --region us-east-2 > instance'        
-          //sh ' grep InstanceId instance > instance1 '
-          //sh([script: 'grep InstanceId instance > instance1'])
-          //sh([script: 'var=$( cat instance1 )'])
-          
-         // slackSend baseUrl: 'https://opstree.slack.com/services/hooks/jenkins-ci/', channel: 'testjenkins', color: '#439FE0', message: 'build info', teamDomain: 'opstree', tokenCredentialId: 'slack-jenkins'     
-         // slackSend message: 'build is success', tokenCredentialId: 'slack-jenkins'
-                         
-            }
+     }
 
                 }
         }     
