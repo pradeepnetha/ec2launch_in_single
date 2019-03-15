@@ -44,22 +44,15 @@ aws ec2 run-instances --image-id $img_id --count 1 --instance-type $instance_typ
 #}
 
 #instancelaunch
-
-           
            " > pradeepec2launch.sh
-           
                 chmod +x pradeepec2launch.sh
                 ./pradeepec2launch.sh $img_id $instance_type $sub_id $region_name $sg_name $key_name $tag_name $tag_value $tag_instance
           '''
-               
-  sh '''
+sh '''
   grep InstanceId information.txt | tr -d '", "' > hai
   sed -i 's/InstanceId://g' hai
-    
-  '''
-  
-               
-          //sh 'aws ec2 describe-instances --filters "Name=tag:Name,Values=Web3" --region us-east-2 > instance'        
+ '''
+         //sh 'aws ec2 describe-instances --filters "Name=tag:Name,Values=Web3" --region us-east-2 > instance'        
           //sh ' grep InstanceId instance > instance1 '
           //sh([script: 'grep InstanceId instance > instance1'])
           //sh([script: 'var=$( cat instance1 )'])
@@ -72,6 +65,19 @@ aws ec2 run-instances --image-id $img_id --count 1 --instance-type $instance_typ
                 }
         }     
         
+        stage ('tagging') {
+            steps {
+                script {
+                    def insta_id = ''
+                    dir ('/var/lib/jenkins/workspace/ec2insingle'){
+                     
+                        insta_id = sh(script: "cat head -1 hai", returnStdout: true)
+                        echo "${insta_id}"                 
+                    }    
+                echo "${insta_id}"
+                }
+            }
+        }
         
         
         }
