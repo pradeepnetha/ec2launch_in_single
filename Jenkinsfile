@@ -71,7 +71,7 @@ sh '''
                     def insta_id = ''
                     dir ('/var/lib/jenkins/workspace/ec2insingle'){
                      
-                        insta_id = sh(script: "cat head -1 hai", returnStdout: true)
+                        insta_id = sh(script:"head -1 hai", returnStdout: true)
                         echo "${insta_id}"                 
                     }    
                 echo "${insta_id}"
