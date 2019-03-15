@@ -47,7 +47,8 @@ aws ec2 run-instances --image-id $img_id --count 1 --instance-type $instance_typ
            " > pradeepec2launch.sh
                 chmod +x pradeepec2launch.sh
                 ./pradeepec2launch.sh $img_id $instance_type $sub_id $region_name $sg_name $key_name $tag_name $tag_value $tag_instance
-                grep 'InstanceId\|KeyName' information.txt | tr -d '", "' > hai
+                grep 'InstanceId' information.txt | tr -d '", "' > hai
+                grep 'KeyName' information.txt | tr -d '", "' >> hai
                 sed -i 's/InstanceId://g' hai
                 sed -i 's/KeyName://g' hai
                 Insta_Id=$(cat hai)
