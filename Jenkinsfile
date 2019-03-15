@@ -39,33 +39,13 @@ tag_name=$7
 tag_value=$8
 tag_instance=$9
 
-
-//aws ec2 run-instances --image-id ami-abc12345 --count 1 --instance-type t2.micro --key-name MyKeyPair --subnet-id subnet-6e7f829e --tag-specifications 'ResourceType=instance,Tags=[{Key=webserver,Value=production}]' 'ResourceType=volume,Tags=[{Key=cost-center,Value=cc123}]' 
-
-//aws ec2 run-instances --image-id $img_id --count 1 --instance-type $instance_type --key-name $key_name --security-group-ids $sg_name --subnet-id $sub_id --region $region_name > information.txt
-//#grep InstanceId information.txt | tr -d '", ":' > InstanceId
-//sed -i 's/"InstanceId"//g' InstanceId
-//InstanceId=$( cat InstanceId )
-//echo $InstanceId
-//aws ec2 create-tags --resources $InstanceId --tags Key=Name,Value=Web3
-
-//instancelaunch() {
+#instancelaunch() {
 aws ec2 run-instances --image-id $img_id --count 1 --instance-type $instance_type --key-name $key_name --security-group-ids $sg_name --subnet-id $sub_id --region us-east-2 > information.txt
-//grep 'InstanceId' information.txt | tr -d '/", ":' > Instance_Id
-//sed -i 's/""InstanceId""//g' Instance_Id
-//grep '"' Instance_Id | awk -F '"' '{print $2}' > hai
-//sed -i 's/InstanceId//g' Instance_Id
-//#sed -i 's/KeyName//g' Instance_Id
-//#Insta_Id=$( head -1 Instance_Id )
-//#echo ${Insta_Id}
-//#aws ec2 create-tags --resources $Insta_Id --region $region_name  --tags Key=Name,Value=Web3
-//#echo $tag_name
-//#echo $tag_value
-//#echo $tag_instance
-//#aws ec2 create-tags --resources $Insta_Id --region $region_name --tags Key=$tag_name,Value=$tag_value Key=Name,Value=$tag_instance
-//#}
+grep 'InstanceId' information.txt | tr -d '/", ":' > Instance_Id
 
-//#instancelaunch
+#}
+
+#instancelaunch
 
            
            " > pradeepec2launch.sh
@@ -79,7 +59,7 @@ aws ec2 run-instances --image-id $img_id --count 1 --instance-type $instance_typ
           //sh([script: 'var=$( cat instance1 )'])
           
          // slackSend baseUrl: 'https://opstree.slack.com/services/hooks/jenkins-ci/', channel: 'testjenkins', color: '#439FE0', message: 'build info', teamDomain: 'opstree', tokenCredentialId: 'slack-jenkins'     
-          slackSend message: 'build is success', tokenCredentialId: 'slack-jenkins'
+         // slackSend message: 'build is success', tokenCredentialId: 'slack-jenkins'
                          
             }
 
