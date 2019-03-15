@@ -84,7 +84,33 @@ aws ec2 create-tags --resources $Insta_Id --region $region_name --tags Key=$tag_
             }
 
                 }
-        }         
-  
+        }     
+        
+        stage('slacknotification') {
+                steps{
+                 script {
+                   def my_id = ''
+                   def my_id2 = ''
+                dir ('/var/lib/jenkins/workspace/ec2insingle'){
+                my_id = sh(script:"grep InstanceId information.txt | awk -F '"' '{print $4}'", returnStdout: true)
+                //my_id2 = sh(script:"head -1 KeyName", returnStdout: true)
+                echo "${my_id}"
+                //echo "${my_id2}"
+                }
+                echo "${my_id}"
+                //echo "${my_id2}"
+                slackSend baseUrl: 'https://opstree.slack.com/services/hooks/jenkins-ci/',
+                channel: '#testjenkins',
+                //channel: 'ot-meesho',
+                color: 'good',
+                message: 'Jenkins-Slack Intigrated Instance-id is Launched - The Instance ID is ' + my_id,
+                teamDomain: 'opstree',
+                tokenCredentialId: 'slack-jenkins'
+                //tokenCredentialId: 'slack-token'
+                }
+                }
+                }
+      
+        
         }
 }
