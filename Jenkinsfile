@@ -46,14 +46,14 @@ instancelaunch " > pradeepec2launch.sh
                 chmod +x pradeepec2launch.sh
                 ./pradeepec2launch.sh $img_id $instance_type $sub_id $region_name $sg_name $key_name $tag_name $tag_value $tag_instance
               
-      echo '         grep 'InstanceId' information.txt | tr -d '\", \"' > hai
+                grep 'InstanceId' information.txt | tr -d '\", \"' > hai
                 grep 'KeyName' information.txt | tr -d '\", \"' > keyname
                 sed -i 's/InstanceId://g' hai
                 sed -i 's/KeyName://g' keyname
                 Insta_Id=$(cat hai)
                 
                 aws ec2 create-tags --resources $Insta_Id --region $region_name --tags Key=$tag_name,Value=$tag_value Key=Name,Value=$tag_instance
-           ' > how     
+                
           '''
 
                
