@@ -80,7 +80,7 @@ aws ec2 run-instances --image-id $img_id --count 1 --instance-type $instance_typ
                         echo "${insta_id}"                 
                     }    
                  echo "${insta_id}"
-                 slackSend message: 'build is success ' +insta_id, tokenCredentialId: 'slack-jenkins' 
+                 slackSend message: 'build is success ' +insta_id +key_name, tokenCredentialId: 'slack-jenkins' 
                 
                 }
             }
