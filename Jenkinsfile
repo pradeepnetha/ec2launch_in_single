@@ -1,4 +1,4 @@
-node {
+pipeline {
     agent any
         parameters {
         //string (description: 'enter ami_id', name: 'img_id')
