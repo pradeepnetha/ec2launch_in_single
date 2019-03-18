@@ -39,7 +39,8 @@ pipeline {
               instancelaunch' > pradeepec2launch.sh '''
               sh("""chmod +x pradeepec2launch.sh 
                  ./pradeepec2launch.sh $img_id $instance_type $sub_id $region_name $sg_name $key_name $tag_name $tag_value $tag_instance""")
-              sh('''echo grep \'InstanceId\' information.txt | tr -d \'", "\' > instance_id
+              sh('''echo 
+                grep \'InstanceId\' information.txt | tr -d \'", "\' > instance_id
                 grep \'KeyName\' information.txt | tr -d \'", "\' > keyname
                 sed -i \'s/InstanceId://g\' instance_id
                 sed -i \'s/KeyName://g\' keyname
