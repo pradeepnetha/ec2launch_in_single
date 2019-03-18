@@ -37,7 +37,8 @@ instancelaunch() {
 aws ec2 run-instances --image-id ${img_id} --count 1 --instance-type $instance_type --key-name $key_name --security-group-ids $sg_name --subnet-id $sub_id --region us-east-2 > information.txt
 }
 instancelaunch``` > pradeepec2launch.sh''')
-              sh("chmod +x pradeepec2launch.sh ./pradeepec2launch.sh $img_id $instance_type $sub_id $region_name $sg_name $key_name $tag_name $tag_value $tag_instance")
+              sh("chmod +x pradeepec2launch.sh 
+                 ./pradeepec2launch.sh $img_id $instance_type $sub_id $region_name $sg_name $key_name $tag_name $tag_value $tag_instance")
               sh('''echo ```grep \'InstanceId\' information.txt | tr -d \'", "\' > hai
 grep \'KeyName\' information.txt | tr -d \'", "\' > keyname
 sed -i \'s/InstanceId://g\' hai
