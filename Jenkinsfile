@@ -59,7 +59,7 @@ chmod +x proper.sh
                     def insta_id = ''
                     def key_name = ''
                     dir ('/var/lib/jenkins/workspace/ec2insingle') {    
-                        insta_id = sh(script:"head -1 hai", returnStdout: true)
+                        insta_id = sh(script:"head -1 instance_id", returnStdout: true)
                         key_name = sh(script:"head -1 keyname", returnStdout: true)
                         echo "${insta_id}"                 
                     }    
