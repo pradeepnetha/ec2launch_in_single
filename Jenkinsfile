@@ -24,8 +24,8 @@ pipeline {
                    accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
                    credentialsId: 'aws key', 
                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {    
-                       sh ("""echo ```img_id=$1
-instance_type=$2
+                       sh ("""echo ```img_id="$1"
+instance_type="$2"
 sub_id=$3
 region_name=$4
 sg_name=$5
