@@ -20,6 +20,19 @@ pipeline {
     stages {
         stage ('ec2-launch') {
            steps {
+               script {
+                   // def username = log.substring(log.lastIndexOf(":") + 1, log.length())
+        //println username // johntheripper
+                   def username = ''
+                    def log = ''
+                    dir ('/var/lib/jenkins/workspace/ec2insingle') {    
+                        log = grep InstanceId information.txt 
+                        username = log.substring(log.lastIndexOf(":") + 1, log.length())
+                        // key_name = sh(script:"head -1 keyname", returnStdout: true)
+                        println username
+                        echo "${username}"                 
+                    }   
+         
                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
                    accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
                    credentialsId: 'aws key', 
@@ -39,8 +52,9 @@ pipeline {
               instancelaunch' > pradeepec2launch.sh '''
               sh("""chmod +x pradeepec2launch.sh 
                  ./pradeepec2launch.sh $img_id $instance_type $sub_id $region_name $sg_name $key_name $tag_name $tag_value $tag_instance""")
-              sh('''echo 
-                'grep \'InstanceId\' information.txt | tr -d \'", "\' > instance_id
+              
+              sh('''echo'
+                grep \'InstanceId\' information.txt | tr -d \'", "\' > instance_id
                 grep \'KeyName\' information.txt | tr -d \'", "\' > keyname
                 sed -i \'s/InstanceId://g\' instance_id
                 sed -i \'s/KeyName://g\' keyname
@@ -53,6 +67,7 @@ chmod +x proper.sh
                 }
             }
         }
+     }
         stage ('tagging') {
             steps {
                 script {
