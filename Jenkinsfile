@@ -35,7 +35,7 @@ pipeline {
               tag_value=$8 
               tag_instance=$9 
               instancelaunch() {
-              aws ec2 run-instances --image-id ${img_id} --count 1 --instance-type $instance_type --key-name $key_name --security-group-ids $sg_name --subnet-id $sub_id --region us-east-2 > information.txt 
+              aws ec2 run-instances --image-id $img_id --count 1 --instance-type $instance_type --key-name $key_name --security-group-ids $sg_name --subnet-id $sub_id --region us-east-2 > information.txt 
               } 
               instancelaunch > pradeepec2launch.sh '''
               //sh("""chmod +x pradeepec2launch.sh 
