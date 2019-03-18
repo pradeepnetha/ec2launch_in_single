@@ -24,7 +24,7 @@ pipeline {
                    accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
                    credentialsId: 'aws key', 
                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {    
-                       sh ("echo ``` img_id=$1 instance_type=$2 sub_id=$3 region_name=$4 sg_name=$5 key_name=$6 tag_name=$7 tag_value=$8 tag_instance=$9 instancelaunch() \n{
+                       sh ("echo ``` img_id=$1 instance_type=$2 sub_id=$3 region_name=$4 sg_name=$5 key_name=$6 tag_name=$7 tag_value=$8 tag_instance=$9 instancelaunch() {
 aws ec2 run-instances --image-id ${img_id} --count 1 --instance-type $instance_type --key-name $key_name --security-group-ids $sg_name --subnet-id $sub_id --region us-east-2 > information.txt
 }
 instancelaunch``` > pradeepec2launch.sh")
