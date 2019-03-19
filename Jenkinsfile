@@ -42,10 +42,10 @@ pipeline {
                  ./pradeepec2launch.sh $img_id $instance_type $sub_id $region_name $sg_name $key_name $tag_name $tag_value $tag_instance""")
               
               sh '''
-                grep \'InstanceId\' information.txt | tr -d '", ":' > instance_id
-                grep \'KeyName\' information.txt | tr -d '", ":' > keyname
-                sed -i \'s/InstanceId://g\' instance_id
-                sed -i \'s/KeyName://g\' keyname
+                grep 'InstanceId' information.txt | tr -d '", "' > instance_id
+                grep 'KeyName' information.txt | tr -d '", "' > keyname
+                sed -i 's/InstanceId://g' instance_id
+                sed -i 's/KeyName://g' keyname
                 Insta_Id=$(cat instance_id)
      
 echo "aws ec2 create-tags --resources $Insta_Id --region $region_name --tags Key=$tag_name,Value=$tag_value Key=Name,Value=$tag_instance" > proper.sh 
