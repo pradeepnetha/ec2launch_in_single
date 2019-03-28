@@ -43,7 +43,7 @@ pipeline {
               } 
               instancelaunch' > pradeepec2launch.sh '''
               sh("""chmod +x pradeepec2launch.sh 
-                 ./pradeepec2launch.sh $img_id $instance_type $sub_id $region_name $sg_name $key_name $tag_name $tag_value $tag_instance""")
+                 ./pradeepec2launch.sh $img_id $insta_num $instance_type $sub_id $region_name $sg_name $key_name $tag_name $tag_value $tag_instance""")
               
               sh '''
                 grep 'InstanceId' information.txt | tr -d '", "' > instance_id
