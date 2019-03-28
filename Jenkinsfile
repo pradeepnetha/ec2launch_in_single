@@ -11,10 +11,12 @@ pipeline {
         string (description: 'enter instance visible name', name: 'tag_instance')
         choice (choices: ['ami-0b500ef59d8335eee'], description: 'choose key pair?', name: 'img_id')
         choice (choices: ['t2.micro'], name: 'instance_type')
-        choice (choices: ['subnet-0e7e366cb34aca9b2'], name: 'sub_id')
+        string (description: 'enter number of instances', name: 'insta_num')    
+        choice (choices: ['subnet-0d2c89b1b879cfbd3'], name: 'sub_id')
         choice (choices: ['us-east-2'], name: 'region_name')
-        choice (choices: ['sg-04a6d324940433647'], name: 'sg_name')    
+        choice (choices: ['sg-05cabb8b09b6d4160'], name: 'sg_name')    
         choice (choices: ['asg-new','CI_VPC', 'test1'], description: 'choose key pair?', name: 'key_name')
+            
     }
     
     stages {
@@ -26,16 +28,18 @@ pipeline {
                    credentialsId: 'aws key', 
                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {    
               sh '''echo 'img_id="$1" 
-              instance_type=$2 
-              sub_id=$3 
-              region_name=$4 
-              sg_name=$5 
-              key_name=$6 
-              tag_name=$7 
-              tag_value=$8 
-              tag_instance=$9 
+              insta_num=$2
+              instance_type=$3 
+              sub_id=$4
+              region_name=$5 
+              sg_name=$6
+              key_name=$7 
+              tag_name=$8 
+              tag_value=$9 
+              tag_instance=$10 
+              
               instancelaunch() {
-              aws ec2 run-instances --image-id $img_id --count 1 --instance-type $instance_type --key-name $key_name --security-group-ids $sg_name --subnet-id $sub_id --region us-east-2 > information.txt 
+              aws ec2 run-instances --image-id $img_id --count $insta_num --instance-type $instance_type --key-name $key_name --security-group-ids $sg_name --subnet-id $sub_id --region us-east-2 > information.txt 
               } 
               instancelaunch' > pradeepec2launch.sh '''
               sh("""chmod +x pradeepec2launch.sh 
